@@ -7,13 +7,12 @@ def pytest_addoption(parser):
     parser.addoption('--browser_name', action='store', default='chrome',
                      help="Choose browser: chrome or firefox")
     parser.addoption('--language', action='store',default=None,
-                     help='Some language,what you write in consol')
+                     help='Write language in consol,for example: en,es,fr..')
 
 
 @pytest.fixture(scope="function")
 def browser(request):
     browser_name = request.config.getoption("browser_name")
-    browser = None
     language = request.config.getoption("language")
     options = Options()
     options.add_experimental_option('prefs', {'intl.accept_languages': language})
@@ -32,4 +31,3 @@ def browser(request):
     browser.quit()
 
 
-def exist_button_bascet()
